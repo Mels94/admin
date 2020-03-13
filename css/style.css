@@ -76,3 +76,12 @@
 .delete i{
     font-size: 30px;
 }
+.create_categories{
+    font-size: 30px;
+    color: #fff;
+    float: right;
+}
+.create_categories:hover{
+    color: #333;
+    text-decoration: none;
+}

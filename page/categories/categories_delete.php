@@ -1,5 +1,5 @@
 <?php
-require_once '../connect/connect.php';
+require_once '../../connect/connect.php';
 
 $del_id = $_POST['del_id'];
 

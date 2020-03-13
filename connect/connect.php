@@ -42,3 +42,4 @@ $conn->exec($categories);
 
 /*$insert = $conn->prepare("INSERT INTO `categories` (`name`, `create_time`, `update_time`) VALUES ('Toyota', now(), now())");
 $insert->execute();*/
+

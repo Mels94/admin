@@ -1,20 +1,20 @@
-<h1>FORM MODELS</h1>
 
 <?php
 require 'connect/connect.php';
 
-$models_category = $conn->query("SELECT * FROM categories");
+$models_category = $conn->query("SELECT * FROM `categories`");
 $models_category->execute();
 $arrModelsCategory = $models_category->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
 
+<h1>Add new models</h1>
+
 <form action="admin.php?models=models_insert_form" method="post">
-    <h2>insert</h2>
     <input type="text" name="name">
     <select name="taskOption">
-        <option></option>
+        <option>All categories</option>
         <?php foreach ($arrModelsCategory as $value): ?>
             <option value="<?= $value['id']; ?>"><?= $value['name']; ?></option>
         <?php endforeach; ?>
@@ -22,8 +22,8 @@ $arrModelsCategory = $models_category->fetchAll(PDO::FETCH_ASSOC);
     <input type="submit" name="submit" value="Insert">
 </form>
 
-<?php
 
+<?php
 
 
 if (isset($_POST['submit'])) {
@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
         $conn = null;
 
         header('Location:admin.php?models=models');
-die;
+        die;
    }
 }
 

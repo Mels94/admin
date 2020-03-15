@@ -64,5 +64,4 @@ $alter_models = "ALTER TABLE models
 ADD FOREIGN KEY (categories_id) REFERENCES categories(id)";
 $conn->exec($alter_models);
 
-/*$sql = $conn->prepare("SELECT * FROM `models` LEFT JOIN `categories`
-        ON models.category_id = categories.id");*/
+

@@ -10,11 +10,10 @@ $arrCategory = $select_category->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<h1>FORM CATEGORIES</h1>
+<h1>Update categories</h1>
 
 
 <form action="" method="post">
-    <h2>update</h2>
     <input type="text" name="name" value="<?= $arrCategory[0]['name'] ?>">
     <input type="submit" name="submit" value="Update">
 </form>

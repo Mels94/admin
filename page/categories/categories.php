@@ -1,4 +1,4 @@
-<h1>Categories</h1>
+
 <?php
 require 'connect/connect.php';
 

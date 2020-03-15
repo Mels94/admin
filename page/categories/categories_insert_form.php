@@ -3,11 +3,10 @@ require 'connect/connect.php';
 
 ?>
 
-<h1>FORM CATEGORIES</h1>
+<h1>Add new categories</h1>
 
 
 <form action="" method="post">
-    <h2>insert</h2>
     <input type="text" name="name">
     <input type="submit" name="submit" value="Insert">
 </form>

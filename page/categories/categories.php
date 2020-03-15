@@ -5,16 +5,16 @@ require 'connect/connect.php';
 $select = $conn->query("SELECT * FROM `categories`");
 $arrCategory = $select->fetchAll(PDO::FETCH_ASSOC);
 
+if (isset($_GET['categories']) && file_exists('page/categories/'.$_GET['categories'].'.php')) {
+    $page = 'categories/'.$_GET['categories'];
+}
 
 ?>
 
-<a href="page/categories/categories_insert_form.php" class='create_categories'>Create Categories</a>
 
-<form action="" id="form_insert">
-    <input type="text">
-    <button type="button" class="btn btn-success insert">Insert</button>
-</form>
-<table id="table_categories" class="table table-hover table-dark">
+<a href="?categories=categories_insert_form" class='create_new'>Create Categories</a>
+
+<table class="table table-hover table-dark">
     <thead>
     <tr>
         <th>#</th>
@@ -32,13 +32,14 @@ $arrCategory = $select->fetchAll(PDO::FETCH_ASSOC);
             <td><?= $item['create_time'] ?></td>
             <td><?= $item['update_time'] ?></td>
             <td>
-                <a class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <a class="delete"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                <a href="?categories=categories_update_form&id=<?= $item['id'] ?>" class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <a class="delete_categories delete"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
             </td>
         </tr>
     <?php endforeach; ?>
     </tbody>
 </table>
+
 
 
 
@@ -117,7 +118,6 @@ $arrCategory = $select->fetchAll(PDO::FETCH_ASSOC);
         })
         }
     });*/
-
 
 
 </script>

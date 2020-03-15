@@ -47,20 +47,21 @@ $insert->execute();*/
 $models = "CREATE TABLE IF NOT EXISTS `models`(
 id INT(11) AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(255),
-category_id INT(11),
+categories_id INT(11),
 create_time DATETIME,
 update_time TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
 )";
 $conn->exec($models);
 
 
-/*$insert_models = $conn->prepare("INSERT INTO `models` (`name`, `categories_id`, `create_time`, `update_time`) VALUES ('C', '5', now(), now())");
+/*$insert_models = $conn->prepare("INSERT INTO `models` (`name`, `categories_id`, `create_time`, `update_time`)
+                    VALUES ('X5', '2', now(), now())");
 $insert_models->execute();*/
 
 
 
 $alter_models = "ALTER TABLE models
-ADD FOREIGN KEY (category_id) REFERENCES categories(id)";
+ADD FOREIGN KEY (categories_id) REFERENCES categories(id)";
 $conn->exec($alter_models);
 
 /*$sql = $conn->prepare("SELECT * FROM `models` LEFT JOIN `categories`

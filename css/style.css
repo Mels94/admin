@@ -72,16 +72,17 @@
 }
 .edit i{
     font-size: 30px;
+    color: #fff;
 }
 .delete i{
     font-size: 30px;
 }
-.create_categories{
+.create_new{
     font-size: 30px;
     color: #fff;
     float: right;
 }
-.create_categories:hover{
+.create_new:hover{
     color: #333;
     text-decoration: none;
 }

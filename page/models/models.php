@@ -13,19 +13,14 @@ $arrModels = $select->fetchAll(PDO::FETCH_ASSOC);*/
 /*$models_category = $conn->prepare("SELECT * FROM `models` LEFT JOIN `categories`
          ON models.categories_id = categories.id");*/
 
-$models_category = $conn->query("SELECT `mod`.*, cat.`name`
-FROM models AS `mod`
-       LEFT JOIN categories AS cat
-                 ON `mod`.`categories_id` = cat.`id`");
+$models_category = $conn->query("SELECT `mod`.*, `cat`.`name` as `cat_name`
+FROM `models` AS `mod`
+         LEFT JOIN `categories` AS `cat`
+                   ON `mod`.`categories_id` = `cat`.`id`;");
 $models_category->execute();
 $arrModelsCategory = $models_category->fetchAll(PDO::FETCH_ASSOC);
 
 
-
-
-echo '<pre>';
-var_dump($arrModelsCategory);
-echo '</pre>';
 ?>
 
 
@@ -47,7 +42,7 @@ echo '</pre>';
         <tr>
             <td><?= $item['id'] ?></td>
             <td><?= $item['name'] ?></td>
-            <td><?= $item['categories_id'] ?></td>
+            <td><?= $item['cat_name'] ?></td>
             <td><?= $item['create_time'] ?></td>
             <td><?= $item['update_time'] ?></td>
             <td>

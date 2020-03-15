@@ -3,23 +3,20 @@
 <?php
 require 'connect/connect.php';
 
-$models_category = $conn->query("SELECT `mod`.*, cat.`name`
-FROM models AS `mod`
-       LEFT JOIN categories AS cat
-                 ON `mod`.`categories_id` = cat.`id`");
+$models_category = $conn->query("SELECT * FROM categories");
 $models_category->execute();
 $arrModelsCategory = $models_category->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
 
-<form action="" method="post">
+<form action="admin.php?models=models_insert_form" method="post">
     <h2>insert</h2>
     <input type="text" name="name">
     <select name="taskOption">
         <option></option>
         <?php foreach ($arrModelsCategory as $value): ?>
-            <option value="<?= $value['categories_id']; ?>"><?= $value['name']; ?></option>
+            <option value="<?= $value['id']; ?>"><?= $value['name']; ?></option>
         <?php endforeach; ?>
     </select>
     <input type="submit" name="submit" value="Insert">
@@ -38,9 +35,10 @@ if (isset($_POST['submit'])) {
         $insert = $conn->prepare("INSERT INTO `models` (`name`, `categories_id`, `create_time`, `update_time`)
                         VALUES ('$name', '$option', now(), now())");
         $insert->execute();
+        $conn = null;
 
-        header('Location: admin.php?models=models');
-
+        header('Location:admin.php?models=models');
+die;
    }
 }
 

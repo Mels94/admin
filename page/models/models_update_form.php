@@ -5,28 +5,23 @@ require 'connect/connect.php';
 $id = $_GET['id'];
 $categories_id = $_GET['categories_id'];
 
-//$models_category = $conn->query("SELECT * FROM `models`");
 $models_category = $conn->query("SELECT * FROM `categories`");
 $models_category->execute();
 $arrModelsCategory = $models_category->fetchAll(PDO::FETCH_ASSOC);
 
 
+$select_models_id = $conn->prepare("SELECT * FROM `models` WHERE `id`='$id'");
+$select_models_id->execute();
+$arrModels_id = $select_models_id->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
 
-<!--<form action="" method="post">
-    <h2>update</h2>
-    <select name="taskOption">
-        <option>All</option>
-        <?php /*foreach ($arrModelsCategory as $value): */?>
-            <option value="<?/*= $value['id']; */?>" <?php /*if ($value['id'] == $id) { */?> selected <?php /*} */?>><?/*= $value['name']; */?></option>
-        <?php /*endforeach; */?>
-    </select>
-    <input type="submit" name="submit" value="Update">
-</form>-->
 
 <h1>Update models</h1>
 
 <form action="" method="post">
+    <input type="text" name="name" value="<?= $arrModels_id[0]['name'] ?>">
     <select name="taskOption">
         <option>All categories</option>
         <?php foreach ($arrModelsCategory as $value): ?>
@@ -39,34 +34,15 @@ $arrModelsCategory = $models_category->fetchAll(PDO::FETCH_ASSOC);
 <?php
 
 
-
-/*if (isset($_POST['submit'])) {
-
-    if (!empty($_POST['taskOption'])) {
-
-        $option = $_POST['taskOption'];
-
-        $models_select = $conn->query("SELECT `name` FROM `models` WHERE `id`='$option'");
-        $models_select->execute();
-        $arrModels_name = $models_select->fetchAll(PDO::FETCH_ASSOC);
-        $change_name = $arrModels_name[0]['name'];
-
-        $update = $conn->prepare("UPDATE `models` SET `name`='$change_name' WHERE `id`='$id'");
-        $update->execute();
-
-        header('Location:admin.php?models=models');
-        die;
-    }
-}*/
-
-
 if (isset($_POST['submit'])) {
 
     if (!empty($_POST['taskOption'])) {
 
+        $name = $_POST['name'];
         $option = $_POST['taskOption'];
 
-        $update = $conn->prepare("UPDATE `models` SET `categories_id`='$option' WHERE `id`='$id'");
+
+        $update = $conn->prepare("UPDATE `models` SET `name`='$name',`categories_id`='$option' WHERE `id`='$id'");
         $update->execute();
 
         header('Location:admin.php?models=models');

@@ -1,7 +1,8 @@
 <?php
 require 'connect/connect.php';
-require 'auth/auth.php';
-auth();
+//require 'auth/auth.php';
+//auth();
+
 
 if (isset($_GET['categories']) && file_exists('page/categories/'.$_GET['categories'].'.php')) {
     $page = 'categories/'.$_GET['categories'];
@@ -11,6 +12,9 @@ if (isset($_GET['models']) && file_exists('page/models/'.$_GET['models'].'.php')
 }
 if (isset($_GET['product']) && file_exists('page/product/'.$_GET['product'].'.php')) {
     $page = 'product/'.$_GET['product'];
+}
+if (isset($_GET['page']) && file_exists('page/'.$_GET['page'].'.php')) {
+    $page = $_GET['page'];
 }
 
 ?>
@@ -27,6 +31,8 @@ if (isset($_GET['product']) && file_exists('page/product/'.$_GET['product'].'.ph
           integrity='sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN' crossorigin='anonymous'>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script src="js/script.js"></script>
 </head>
 <body>
@@ -40,6 +46,7 @@ if (isset($_GET['product']) && file_exists('page/product/'.$_GET['product'].'.ph
         <div id="side" class="white">
             <h1>Menu</h1>
             <ul>
+                <li><a href="?page=home">Home</a></li>
                 <li><a href="?categories=categories" id="categories">Categories</a></li>
                 <li><a href="?models=models">Models</a></li>
                 <li><a href="?product=product">Product</a></li>
@@ -47,7 +54,17 @@ if (isset($_GET['product']) && file_exists('page/product/'.$_GET['product'].'.ph
             </ul>
         </div>
         <div id="content">
-            <?php require_once('page/'.$page.'.php'); ?>
+            <?php
+
+/*            if (file_exists('page/home.php')){
+                require_once('page/'.$page.'.php');
+            }else{
+
+            }*/
+            require_once('page/'.$page.'.php');
+            ?>
+
+            <?php  ?>
         </div>
     </div>
     <div id="footer"></div>

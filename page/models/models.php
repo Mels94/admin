@@ -2,6 +2,7 @@
 <?php
 require 'connect/connect.php';
 
+
 if (isset($_GET['models']) && file_exists('page/models/'.$_GET['models'].'.php')) {
     $page = 'models/'.$_GET['models'];
 }
@@ -9,11 +10,18 @@ if (isset($_GET['models']) && file_exists('page/models/'.$_GET['models'].'.php')
 $models_category = $conn->query("SELECT `mod`.*, `cat`.`name` as `cat_name`
 FROM `models` AS `mod`
          LEFT JOIN `categories` AS `cat`
-                   ON `mod`.`categories_id` = `cat`.`id`;");
+                   ON `mod`.`categories_id` = `cat`.`id` ORDER BY `id` DESC;");
 $models_category->execute();
 $arrModelsCategory = $models_category->fetchAll(PDO::FETCH_ASSOC);
 //echo '<pre>';
 //var_dump($arrModelsCategory);
+
+/*$sql = $conn->query("SELECT * FROM `models` LIMIT 5 OFFSET 5");
+$sql->execute();
+$arr = $sql->fetchAll(PDO::FETCH_ASSOC);
+echo '<pre>';
+var_dump($arr);
+echo '</pre>';*/
 ?>
 
 
@@ -39,7 +47,6 @@ $arrModelsCategory = $models_category->fetchAll(PDO::FETCH_ASSOC);
             <td><?= $item['create_time'] ?></td>
             <td><?= $item['update_time'] ?></td>
             <td>
-<!--                <a href="?models=models_update_form&id=<?/*= $item['id'] */?>" class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>-->
                 <a href="?models=models_update_form&id=<?= $item['id'] ?>&categories_id=<?= $item['categories_id'] ?>" class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 <a class="delete_models delete"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
             </td>
@@ -47,3 +54,7 @@ $arrModelsCategory = $models_category->fetchAll(PDO::FETCH_ASSOC);
     <?php endforeach; ?>
     </tbody>
 </table>
+
+<a href="#">1</a>
+<a href="#">2</a>
+<a href="#">3</a>

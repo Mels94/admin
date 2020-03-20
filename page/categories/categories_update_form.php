@@ -10,21 +10,22 @@ $arrCategory = $select_category->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<h1>Update categories</h1>
+<div class="card form_card">
+    <form class="text-center border border-light p-5" action="" method="post">
+        <h2 class="mb-4">Update categories</h2>
+        <input type="text" name="update_name" class="form-control mb-4" placeholder="Name" value="<?= $arrCategory[0]['name'] ?>">
 
-
-<form action="" method="post">
-    <input type="text" name="name" value="<?= $arrCategory[0]['name'] ?>">
-    <input type="submit" name="submit" value="Update">
-</form>
-
+        <!-- Sign up button -->
+        <input class="btn btn-info my-4 btn-block" type="submit" name="submit" value="Update">
+    </form>
+</div>
 
 <?php
 
 if (isset($_POST['submit'])){
-    if (!empty($_POST['name'])){
+    if (!empty($_POST['update_name'])){
 
-        $name = $_POST['name'];
+        $name = $_POST['update_name'];
 
         $update = $conn->prepare("UPDATE `categories` SET `name`='$name' WHERE `id`='$id'");
         $update->execute();

@@ -1,48 +1,61 @@
-
+/*------------wrapper-----------*/
 #wrapper {
     width: 100%;
-    margin: 0 auto;
-    background-color: #00bfbf;
+    background-color: #e5e5e6;
+    background-image: url("../img/backgraund.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%, 100%;
 }
 #header {
-    height: 100px;
-    margin-bottom: 10px;
-    background: #8892BF;
-}
-#header h1{
-    text-align: center;
-    color: #fff;
-    font-size: 40px;
-    margin: 0;
-    padding-top: 20px;
+    height: 70px;
+    /*margin-bottom: 10px;*/
+    background: #32373d;
 }
 #container {
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
     overflow: hidden;
 }
 #side {
     float: left;
-    width: 25%;
-    height: 500px;
+    width: 20%;
+    background: #545454;
+    height: 90vh;
 }
 #content {
-    width: 74%;
-    background: #8892BF;
+    width: 80%;
+/*    background: #8892BF;*/
     float: right;
-/*    height: 500px;*/
+    height: auto;
 }
 #footer {
-    height: 100px;
-    background: #8892BF;
+    height: 70px;
+    background: #32373d;
+    padding-top: 20px;
 }
-.white {
-    background: #fff;
+#footer span{
+    color: #ddd;
+    float: right;
+    margin-right: 50px;
+}
+
+/*----------------header--------------*/
+#header h1{
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 35px;
+    margin: 0;
+    padding-top: 10px;
+}
+
+/*-----------------sidebar---------------*/
+#side .img{
+    width: 100%;
 }
 #side h1 {
     margin: 0;
     padding: 10px 20px;
-    background: #8892BF;
-    color: #fff;
+    background: #32373d;
+    color: #ddd;
 }
 #side ul {
     display: contents;
@@ -50,39 +63,86 @@
 #side ul li a {
     display: block;
     padding: 10px 20px;
-    border-bottom: 1px solid #f1f1f1;
+    border-bottom: 1px solid #32373d;
     font-size: 26px;
     text-decoration: none;
-    color: #8892BF;
+    color: rgba(255, 255, 255, 0.6);
 }
 #side ul li a:hover {
-    color: #333;
+    color: #ddd;
+    background: #32373d;
 }
-.add i{
-    float: right;
-    font-size: 40px;
+#side ul li a.active {
+    color: #ddd;
+    background: #32373d;
 }
-#form_insert{
-    display: none;
-    margin: 0 0 0 20px;
+
+/*------------------------content------------------------*/
+.page_contents{
+    padding: 10px;
+    /*background-color: #FF2C31;*/
 }
-.edit{
-    float: left;
-    margin-right: 10px;
-}
-.edit i{
-    font-size: 30px;
-    color: #fff;
-}
-.delete i{
-    font-size: 30px;
+.page_contents h3{
+    color: #ddd;
 }
 .create_new{
+    font-size: 20px;
+    float: right;
+    margin-bottom: 10px;
+}
+.page_contents .edit{
+    float: left;
+    margin-right: 15px;
+}
+.page_contents .edit i{
     font-size: 30px;
     color: #fff;
-    float: right;
 }
-.create_new:hover{
-    color: #333;
+.page_contents .delete i{
+    font-size: 30px;
+    cursor: pointer;
+}
+/*----------------page categories-------------*/
+
+
+
+
+
+/*----------------form insert update-------------*/
+.form_card{
+    width: 50%;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+/*-------------------pagination-----------------*/
+.pagination{
+    text-align: center;
+    display: block;
+}
+.pagination ul li {
+    display: inline;
+    padding-left: 0;
+}
+.pagination a.pn {
+    background-color: #ddd;
+    border: solid 1px #32373d;
+    border-radius: 0.4rem;
     text-decoration: none;
+    text-align: center;
+    padding: 6px 12px;
+    color: #000;
+    margin: 0 5px;
+}
+.pagination a.pn:hover {
+    background: #32373d;
+    color: #ddd;
+}
+.pagination a.pn.active{
+    background: #32373d;
+    color: #ddd;
 }

@@ -2,35 +2,39 @@
 <?php
 require 'connect/connect.php';
 
-$models_category = $conn->query("SELECT * FROM `categories`");
-$models_category->execute();
-$arrModelsCategory = $models_category->fetchAll(PDO::FETCH_ASSOC);
+$category = $conn->query("SELECT * FROM `categories`");
+$category->execute();
+$arrCategory = $category->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
 
-<h1>Add new models</h1>
 
-<form action="admin.php?models=models_insert_form" method="post">
-    <input type="text" name="name">
-    <select name="taskOption">
-        <option>All categories</option>
-        <?php foreach ($arrModelsCategory as $value): ?>
-            <option value="<?= $value['id']; ?>"><?= $value['name']; ?></option>
-        <?php endforeach; ?>
-    </select>
-    <input type="submit" name="submit" value="Insert">
-</form>
+<div class="card form_card">
+    <form class="text-center border border-light p-5" action="admin.php?models=models_insert_form" method="post">
+        <h2 class="mb-4">Add new models</h2>
+        <input type="text" name="insert_name" class="form-control mb-4" placeholder="Name">
+        <select class="custom-select mb-4" name="CategoryOption">
+            <option>All categories</option>
+            <?php foreach ($arrCategory as $value): ?>
+                <option value="<?= $value['id']; ?>"><?= $value['name']; ?></option>
+            <?php endforeach; ?>
+        </select>
+
+        <!-- Sign up button -->
+        <input class="btn btn-info my-4 btn-block" type="submit" name="submit" value="Insert">
+    </form>
+</div>
 
 
 <?php
 
 
 if (isset($_POST['submit'])) {
-    if (!empty($_POST['name'] && $_POST['taskOption'])) {
+    if (!empty($_POST['insert_name'] && $_POST['CategoryOption'])) {
 
-        $name = $_POST['name'];
-        $option = $_POST['taskOption'];
+        $name = $_POST['insert_name'];
+        $option = $_POST['CategoryOption'];
 
         $insert = $conn->prepare("INSERT INTO `models` (`name`, `categories_id`, `create_time`, `update_time`)
                         VALUES ('$name', '$option', now(), now())");

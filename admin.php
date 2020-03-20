@@ -4,18 +4,16 @@ require 'connect/connect.php';
 //auth();
 
 
-if (isset($_GET['categories']) && file_exists('page/categories/'.$_GET['categories'].'.php')) {
+if (isset($_GET['categories']) && file_exists('page/categories/'.$_GET['categories'].'.php')){
     $page = 'categories/'.$_GET['categories'];
-}
-if (isset($_GET['models']) && file_exists('page/models/'.$_GET['models'].'.php')) {
+}elseif (isset($_GET['models']) && file_exists('page/models/'.$_GET['models'].'.php')){
     $page = 'models/'.$_GET['models'];
-}
-if (isset($_GET['product']) && file_exists('page/product/'.$_GET['product'].'.php')) {
+}elseif (isset($_GET['product']) && file_exists('page/product/'.$_GET['product'].'.php')){
     $page = 'product/'.$_GET['product'];
+}else{
+    $page = 'home';
 }
-if (isset($_GET['page']) && file_exists('page/'.$_GET['page'].'.php')) {
-    $page = $_GET['page'];
-}
+
 
 ?>
 <!doctype html>
@@ -43,31 +41,26 @@ if (isset($_GET['page']) && file_exists('page/'.$_GET['page'].'.php')) {
         <h1>Դինամիկ վեբ կայք PHP / MySQL</h1>
     </div>
     <div id="container">
-        <div id="side" class="white">
-            <h1>Menu</h1>
+        <div id="side">
+            <div>
+                <img class="img" src="img/admin.png" alt="admin-login">
+            </div>
+            <h1><i class="fa fa-bars" aria-hidden="true"></i> Menu</h1>
             <ul>
-                <li><a href="?page=home">Home</a></li>
-                <li><a href="?categories=categories" id="categories">Categories</a></li>
-                <li><a href="?models=models">Models</a></li>
-                <li><a href="?product=product">Product</a></li>
-                <li><a href="logout.php">Exit</a></li>
+                <li><a href="admin.php" <?php if ($page == 'home'){ ?> class="active" <?php } ?>><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                <li><a href="?categories=categories" <?php if ($page == 'categories/categories'){ ?> class="active" <?php } ?>><i class="fa fa-creative-commons" aria-hidden="true"></i> Categories</a></li>
+                <li><a href="?models=models" <?php if ($page == 'models/models'){ ?> class="active" <?php } ?>><i class="fa fa-modx" aria-hidden="true"></i> Models</a></li>
+                <li><a href="?product=product" <?php if ($page == 'product/product'){ ?> class="active" <?php } ?>><i class="fa fa-product-hunt" aria-hidden="true"></i> Product</a></li>
+                <li><a href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a></li>
             </ul>
         </div>
         <div id="content">
-            <?php
-
-/*            if (file_exists('page/home.php')){
-                require_once('page/'.$page.'.php');
-            }else{
-
-            }*/
-            require_once('page/'.$page.'.php');
-            ?>
-
-            <?php  ?>
+            <?php require_once('page/'.$page.'.php'); ?>
         </div>
     </div>
-    <div id="footer"></div>
+    <div id="footer">
+        <span>&#169; 2020: PHP &#38; MySQL</span>
+    </div>
 </div>
 
 
